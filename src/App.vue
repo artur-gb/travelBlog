@@ -26,9 +26,7 @@ const redirectToAuth = () => {
 };
 
 const showHeader = computed(() => {
-  return (
-    route.name === NamedRoutes.MainPage || route.name === NamedRoutes.PostsPage
-  );
+  return route.name !== NamedRoutes.AuthPage;
 });
 
 onMounted(redirectToAuth);

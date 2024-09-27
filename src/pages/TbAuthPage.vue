@@ -1,17 +1,23 @@
 <template>
-  <div>
-    <form @submit.prevent="sendData">
-      <div>
+  <div class="flex flex-col h-screen items-center justify-center gap-2">
+    <form @submit.prevent="sendData" class="grid grid-cols-[auto_auto] items-center gap-2">
         <label for="email">Email:</label>
-        <input type="email" v-model="email" required />
-      </div>
-      <div>
+        <input
+          type="email"
+          v-model="email"
+          required
+          class="p-2 border rounded border-amber-600"
+        />
         <label for="password">Password:</label>
-        <input type="password" v-model="password" required />
-      </div>
-      <button type="submit">Register</button>
+        <input
+          type="password"
+          v-model="password"
+          required
+          class="p-2 border rounded border-amber-600"
+        />
+      <button type="submit" class="p-2 text-amber-600 col-span-2">Sign In</button>
     </form>
-    <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+    <div class="text-red-500">{{ errorMessage ?? "&nbsp;" }}</div>
   </div>
 </template>
 
@@ -47,7 +53,7 @@ const sendData = async () => {
       name: NamedRoutes.MainPage,
     });
   } catch (err) {
-    errorMessage.value = 'Authorization error';
+    errorMessage.value = "Authorization error";
     console.error(err);
   }
   isSigningIn.value = false;

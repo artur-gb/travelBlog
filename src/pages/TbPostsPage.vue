@@ -1,6 +1,9 @@
 <template>
-  <tb-loader />
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+  <tb-loader v-if="isFeedLoading" />
+  <div
+    v-else-if="posts.length > 0"
+    class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 max-h-[calc(100vh-192px)] md:max-h-[calc(100vh-148px)] overflow-auto"
+  >
     <div
       v-for="post in posts"
       class="flex flex-col border shadow-lg gap-2 bg-white rounded p-4 w-full"
@@ -14,6 +17,14 @@
   <tb-paginator
     :page-size="pagination.pageSize"
     :total-records="pagination.totalRecords"
+    :page-sizes="pagination.pageSizes"
+    @on-page-change="(val:number)=>{
+      pagination.page = val
+    }"
+    @on-page-size-change="(val:number)=>{
+      pagination.pageSize = val
+    }"
+    class="p-2 justify-end"
   />
 </template>
 

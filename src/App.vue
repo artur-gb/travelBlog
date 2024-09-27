@@ -1,18 +1,19 @@
 <template>
-  <div class="bg-neutral-50 px-4 md:px-8 lg:px-16">
-    <tb-header />
+  <div class="px-4 md:px-8 lg:px-16">
+    <tb-header v-if="showHeader" />
     <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import TbHeader from "./components/TbHeader.vue";
 import { useSessionStore } from "./stores/sessionStore";
 import { NamedRoutes } from "./routes/root";
 
 const router = useRouter();
+const route = useRoute();
 
 const sessionStore = useSessionStore();
 
@@ -23,6 +24,12 @@ const redirectToAuth = () => {
     }
   });
 };
+
+const showHeader = computed(() => {
+  return (
+    route.name === NamedRoutes.MainPage || route.name === NamedRoutes.PostsPage
+  );
+});
 
 onMounted(redirectToAuth);
 </script>

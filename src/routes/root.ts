@@ -2,14 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import TbMainPage from "../pages/TbMainPage.vue";
 import TbPostsPage from "../pages/TbPostsPage.vue";
-import TbContactsPage from "../pages/TbContactsPage.vue";
 import TbAuthPage from "../pages/TbAuthPage.vue";
 
 export enum NamedRoutes {
   AuthPage = "Authorization",
   MainPage = "MainPage",
   PostsPage = "PostsPage",
-  ContactsPage = "ContactsPage",
 }
 
 export const buildRouter = () => {
@@ -34,11 +32,6 @@ export const buildRouter = () => {
             path: "posts",
             name: NamedRoutes.PostsPage,
             component: TbPostsPage,
-          },
-          {
-            path: "contacts",
-            name: NamedRoutes.ContactsPage,
-            component: TbContactsPage,
           },
         ],
       },

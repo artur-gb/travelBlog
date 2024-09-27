@@ -9,7 +9,7 @@ import {
 
 export class ApiTravelBlogService implements ITravelBlogService {
   async signIn(query: AuthRequestDto): Promise<{ token: string }> {
-    const response = await fetch("https://reqres.in/api/register", {
+    const response = await fetch("https://reqres.in/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
